@@ -1,0 +1,11 @@
+<h1> Welcome, <%= User.find_by_remember_token(session[:remember_token]).name %>!</h1>
+<%= link_to "Sign out", :url => session_url, :method => :delete %>
+
+<h2>Newspapers! </h2>
+<ul>
+	<% Newspaper.all.each do |paper| %>
+		<li><%=link_to paper.title, paper %></li>
+	<% end %>
+</ul>
+
+<%= link_to "Add Newspaper", new_newspaper_url %>

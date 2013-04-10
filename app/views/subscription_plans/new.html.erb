@@ -1,0 +1,21 @@
+<h1> New Subscription Plan for the <%= @paper.title %></h1>
+
+<%= form_for(@sub) do |f| %>
+	<%= f.hidden_field :newspaper_id, {:value => "#{@paper.id}"} %>
+	
+	<%= f.label :price %>
+	<%= f.number_field :price %>
+	<br><br>
+
+	<%= f.label :daily_1 , "Daily"%>
+	<%= f.radio_button :daily, "1" %>
+	<br><br>
+
+	<%= f.label :daily_0, "Weekly" %>
+	<%= f.radio_button :daily, "0" %>
+
+	<br><br>
+
+	<%= f.submit %>
+
+<% end %>
