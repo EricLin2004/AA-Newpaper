@@ -1,2 +1,45 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>Create New User</h1>
+<%= form_for(:user, :url => users_url) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, :value => ''%>
+	<br><br>
+
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+	<br><br>
+	
+	<%= f.submit "Create user" %>
+<% end %>
+
+<h1>Select Bars Version</h1>
+
+<form action="/users" method="post">
+	<label>Name
+		<input type="text" name="user[name]">
+	</label>
+	<br><br>
+
+	<label>Password
+		<input type="password" name="user[password]">
+	</label>	
+	<br><br>
+
+	<% Newspaper.all.each do |paper| %>
+		<p><%= paper.title %></p>
+		<select name="user[subscription_plan_ids][]">
+			<option value="0">None</option>
+			<% paper.subscription_plans.each do |plan| %>
+				<option value=<%= plan.id %>><%= plan.price %> per
+					<% if plan.daily %>
+						<%= "day!" %>
+					<% else %>
+						<%= "week!" %>
+					<% end %> 
+				</option>
+			<% end %>
+		</select>
+	<% end %>
+
+	<br><br>
+	<input type="submit" name="commit">
+</form>

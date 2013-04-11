@@ -7,13 +7,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= flash[:errors] %>
-
-<%= yield %>
-
+	<div class="row-fluid">
+		<div class="row-fluid">
+			<%= flash[:errors] %>
+			<%= flash[:success] %>
+			<div class="container">
+				<div class="navbar">
+					<div class="navbar-inner">
+				    <ul class="nav nav-tabs">
+				    	<li><a class="brand" href=<%=newspapers_url%> >Home</a></li>
+							<% unless session[:remember_token].nil? %>
+								<li><a class="brand" href=<%=current_user%> >User Profile</a></li>
+								<li><a class="brand" href=<%=new_session_url%> >Sign out</a></li>
+							<% end %>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<%= flash[:errors] %>
+				<%= flash[:success] %>
+				<%= yield %>
+			</div>
+		</div>
+	</div>
 <br><br>
-Navigation:
-<%= link_to "Home", root_url %>
+
 </body>
 </html>

@@ -1,12 +1,14 @@
 News::Application.routes.draw do
-  resources :sessions
+  resources :sessions, :only => [:new, :destroy, :create]
 
   resources :users
 
-  resources :subscription_plans
-  
+  resources :subscription_plans do
+    resources :users, :only => [:edit, :update]
+  end
+
   resources :newspapers do
-    resources :subscription_plans
+    resources :subscription_plans, :only => [:new]
   end
 
   root to: 'sessions#new'

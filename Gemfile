@@ -40,3 +40,5 @@ gem 'jquery-rails'
 gem 'therubyracer'
 
 gem 'better_errors'
+
+gem 'bootstrap-sass'

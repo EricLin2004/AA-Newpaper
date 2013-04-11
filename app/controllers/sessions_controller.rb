@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   def new
-  	session[:remember_token] = nil
+    unless session[:remember_token].nil?
+      log_out
+  	end
   end
 
   def create

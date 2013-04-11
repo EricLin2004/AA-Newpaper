@@ -10,16 +10,5 @@
 
 	<%= f.submit "Log in" %>
 <% end %>
-
-<h1>Create New User</h1>
-<%= form_for(:user, :url => new_user_url) do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name, :value => ''%>
-	<br><br>
-
-	<%= f.label :password %>
-	<%= f.password_field :password %>
-	<br><br>
-	
-	<%= f.submit "Create user" %>
-<% end %>
+<br><Br>
+<%= link_to "Create New User", new_user_url %>

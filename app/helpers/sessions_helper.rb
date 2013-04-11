@@ -18,17 +18,16 @@ module SessionsHelper
 	end
 
 	def logged_in?
-		if current_user.remember_token == session[:remember_token]
-			return true
-		else
+		if current_user.nil? || current_user.remember_token != session[:remember_token]
 			log_out
 			return false
+		else
+			return true
 		end
 	end
 
 	def log_out
 		session[:remember_token] = nil
 		flash[:success] = "Logged out!"
-		redirect_to new_session_url
 	end
 end
